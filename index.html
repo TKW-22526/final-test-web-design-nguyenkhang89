@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Liệt kê danh sách sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <script src="js/script.js"></script>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row align-items-center mb-4 pb-3 border-bottom">
+            <div class="col-sm-6">
+                <h2 class="fw-bold m-0 text-dark">Thế Giới Mô Hình</h2>
+            </div>
+            <div class="col-sm-6 d-flex justify-content-sm-end mt-3 mt-sm-0">
+                <div class="d-flex align-items-center">
+                    
+                    <button class="btn btn-outline-success fw-bold me-3" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fa-solid fa-cart-shopping me-2"></i>Giỏ hàng
+                    </button>
+                    
+                    <label for="category-select" class="me-2 fw-bold text-secondary text-nowrap">Danh mục:</label>
+                    <select id="category-select" class="form-select" style="width: 200px;" onchange="filterProducts(this.value)">
+                        <option value="all">Tất cả sản phẩm</option>
+                        <option value="gundam">Mô hình Gundam</option>
+                        <option value="pokemon">Figure Pokemon</option>
+                        <option value="onepiece">Figure One Piece</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-list row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4" id="product-list">
+            </div>
+    </div>
+
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="cartModalLabel"><i class="fa-solid fa-cart-shopping me-2"></i> Giỏ hàng của bạn</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <p class="fw-bold text-secondary mb-2"><i class="fa-solid fa-list-ul me-2"></i>Các món đã chọn:</p>
+                    
+                    <div id="quick-cart-list" class="list-group mb-2" style="max-height: 200px; overflow-y: auto;"></div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                        <span class="fw-bold text-dark fs-5">Tổng tiền:</span>
+                        <span class="fw-bold text-danger fs-5" id="cart-total-price">0đ</span>
+                    </div>
+                    <div class="alert alert-warning text-center py-2 mb-0 small" id="cart-empty-msg" style="display: none;">
+                        Giỏ hàng của bạn đang trống không!
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục xem hàng</button>
+                    <button type="button" class="btn btn-danger fw-bold" onclick="checkout()">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const savedCategory = localStorage.getItem("selectedCategory") || "all";
+        
+        const categorySelect = document.getElementById("category-select");
+        if (categorySelect) {
+            categorySelect.value = savedCategory;
+        }
+
+        filterProducts(savedCategory);
+    </script>
+</body>
+</html>
