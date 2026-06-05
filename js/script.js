@@ -42,7 +42,7 @@ function addProduct(id, name, price, image, hyperLink)
     productImage.setAttribute("class", "product-image ratio ratio-1x1 overflow-hidden");
 
     const Image = document.createElement("img");
-    Image.setAttribute("src", image);
+    Image.setAttribute("src", "../" + image);
     Image.setAttribute("alt", name);
     Image.setAttribute("class", "img-fluid object-fit-cover h-100");
 
@@ -62,7 +62,7 @@ function addProduct(id, name, price, image, hyperLink)
     const productLink = document.createElement("a");
     const productLinkText = document.createTextNode("Xem chi tiết");
     productLink.appendChild(productLinkText);
-    productLink.setAttribute("href", hyperLink + "?id="+id);
+    productLink.setAttribute("href", "product-detail.html?id=" + id);
     productLink.setAttribute("class", "btn btn-outline-info btn-sm mt-auto");
 
     productInfo.appendChild(productName);

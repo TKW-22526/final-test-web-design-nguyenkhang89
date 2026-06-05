@@ -1,80 +1,77 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Liệt kê danh sách sản phẩm</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <meta charset="UTF-8">
-    <script src="js/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Thế Giới Mô Hình</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-warning" href="#">🤖 THẾ GIỚI MÔ HÌNH</a>
+            <div class="d-flex">
+                <a href="html/san-pham.html" class="btn btn-outline-warning btn-sm me-2">Cửa hàng</a>
+                <a href="html/gioi-thieu.html" class="btn btn-outline-light btn-sm me-2">Giới thiệu</a>
+                <a href="html/lien-he.html" class="btn btn-outline-light btn-sm">Liên hệ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bg-dark text-white text-center py-5 mb-5" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/1200/400') no-repeat center center; background-size: cover;">
+        <div class="container py-4">
+            <h1 class="display-4 fw-bold text-warning">Chào mừng tới Thế Giới Mô Hình</h1>
+            <p class="lead text-light">Nơi thỏa mãn đam mê sưu tầm Gundam, Pokemon Figure và One Piece chính hãng.</p>
+            <a href="html/san-pham.html" class="btn btn-warning btn-lg fw-bold mt-3 shadow"><i class="fa-solid fa-bag-shopping me-2"></i>Khám phá ngay</a>
+        </div>
+    </div>
+
     <div class="container my-5">
-        <div class="row align-items-center mb-4 pb-3 border-bottom">
-            <div class="col-sm-6">
-                <h2 class="fw-bold m-0 text-dark">Thế Giới Mô Hình</h2>
-            </div>
-            <div class="col-sm-6 d-flex justify-content-sm-end mt-3 mt-sm-0">
-                <div class="d-flex align-items-center">
-                    
-                    <button class="btn btn-outline-success fw-bold me-3" data-bs-toggle="modal" data-bs-target="#cartModal">
-                        <i class="fa-solid fa-cart-shopping me-2"></i>Giỏ hàng
-                    </button>
-                    
-                    <label for="category-select" class="me-2 fw-bold text-secondary text-nowrap">Danh mục:</label>
-                    <select id="category-select" class="form-select" style="width: 200px;" onchange="filterProducts(this.value)">
-                        <option value="all">Tất cả sản phẩm</option>
-                        <option value="gundam">Mô hình Gundam</option>
-                        <option value="pokemon">Figure Pokemon</option>
-                        <option value="onepiece">Figure One Piece</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div class="product-list row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4" id="product-list">
-            </div>
-    </div>
-
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="cartModalLabel"><i class="fa-solid fa-cart-shopping me-2"></i> Giỏ hàng của bạn</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body py-4">
-                    <p class="fw-bold text-secondary mb-2"><i class="fa-solid fa-list-ul me-2"></i>Các món đã chọn:</p>
-                    
-                    <div id="quick-cart-list" class="list-group mb-2" style="max-height: 200px; overflow-y: auto;"></div>
-                    
-                    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
-                        <span class="fw-bold text-dark fs-5">Tổng tiền:</span>
-                        <span class="fw-bold text-danger fs-5" id="cart-total-price">0đ</span>
-                    </div>
-                    <div class="alert alert-warning text-center py-2 mb-0 small" id="cart-empty-msg" style="display: none;">
-                        Giỏ hàng của bạn đang trống không!
+        <h3 class="text-center fw-bold mb-4">DANH MỤC NỔI BẬT</h3>
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 text-center">
+                    <div class="card-body py-4">
+                        <div class="fs-1 text-primary mb-2"><i class="fa-solid fa-robot"></i></div>
+                        <h5 class="card-title fw-bold">Mô Hình Gundam</h5>
+                        <p class="card-text text-muted small">Các bộ Gunpla lắp ráp tinh xảo đủ mọi cấp độ từ HG, RG đến MG.</p>
+                        <a href="html/san-pham.html" onclick="localStorage.setItem('selectedCategory', 'gundam')" class="btn btn-outline-primary btn-sm fw-bold">Xem Gundam</a>
                     </div>
                 </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tiếp tục xem hàng</button>
-                    <button type="button" class="btn btn-danger fw-bold" onclick="checkout()">Mua ngay</button>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 text-center">
+                    <div class="card-body py-4">
+                        <div class="fs-1 text-danger mb-2"><i class="fa-solid fa-ship"></i></div>
+                        <h5 class="card-title fw-bold">Figure One Piece</h5>
+                        <p class="card-text text-muted small">Luffy Gear 5, Zoro, Sanji tái hiện những trận chiến kinh điển.</p>
+                        <a href="html/san-pham.html" onclick="localStorage.setItem('selectedCategory', 'onepiece')" class="btn btn-outline-danger btn-sm fw-bold">Xem One Piece</a>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0 text-center">
+                    <div class="card-body py-4">
+                        <div class="fs-1 text-warning mb-2"><i class="fa-solid fa-bolt"></i></div>
+                        <h5 class="card-title fw-bold">Figure Pokemon</h5>
+                        <p class="card-text text-muted small">Những chú Pokemon dễ thương, từ Pikachu, Squirtle đến Mewtwo huyền thoại.</p>
+                        <a href="html/san-pham.html" onclick="localStorage.setItem('selectedCategory', 'pokemon')" class="btn btn-outline-warning btn-sm fw-bold">Xem Pokemon</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-    <script>
-        const savedCategory = localStorage.getItem("selectedCategory") || "all";
-        
-        const categorySelect = document.getElementById("category-select");
-        if (categorySelect) {
-            categorySelect.value = savedCategory;
-        }
 
-        filterProducts(savedCategory);
-    </script>
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <p class="mb-0 small">© 2026 Thế Giới Mô Hình. Được thiết kế bởi Nguyễn Minh Khang.</p>
+    </footer>
+
 </body>
 </html>
