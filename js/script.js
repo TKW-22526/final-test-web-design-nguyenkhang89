@@ -27,7 +27,7 @@ const productList = [
     { id: "24", category: "onepiece", name: "Figure Vinsmoke Sanji Chân Lửa", price: "680.000", image: "assets/images/op-sanji.webp", productLink: "html/product-detail.html", desc: "Anh chàng đầu bếp lịch lãm Sanji đang tung cú đá rực lửa Diable Jambe đầy uy lực. Hiệu ứng ngọn lửa bùng cháy bán trong suốt ở chân được đúc tinh xảo, tạo điểm nhấn cực mạnh cho góc trưng bày." },
     { id: "25", category: "onepiece", name: "Figure Tony Tony Chopper Đáng Yêu", price: "320.000", image: "assets/images/op-choper.webp", productLink: "html/product-detail.html", desc: "Bác sĩ nhỏ tuổi Chopper siêu cấp đáng yêu trong trang phục hậu Wano Quốc. Mô hình đi kèm chiếc ba lô nhỏ nhắn và biểu cảm hân hoan rạng rỡ, làm tan chảy trái tim của mọi fan hâm mộ." },
     { id: "26", category: "onepiece", name: "Figure Brook Linh Vương", price: "620.000", image: "assets/images/op-brook.webp", productLink: "html/product-detail.html", desc: "Nhạc công xương xẩu Brook - 'Linh Vương' lịch lãm với cây đàn guitar cá tính. Chi tiết bộ xương và bộ vest quý tộc được hoàn thiện xuất sắc, mang đậm chất rock phóng khoáng và ma mị." },
-    { id: "27", category: "onepiece", name: "Figure Portgas D. Ace Hỏa Quyền", price: "750.000", image: "assets/images/op-ace.webp", productLink: "html/product-detail.html", desc: "Mô hình tưởng niệm Anh Trai Quốc Dân Portgas D. Ace với chiêu thức Hỏa Quyền thương hiệu. Ngọn lửa bao quanh cơ thể săn chắc cùng chiếc mũ cao bồi đặc trưng tạo nên một tư thế chiến đấu bất tử." },
+    { id: "27", category: "onepiece", name: "Figure Portgas D. Ace Hỏa Quyền", price: "750.000", image: "assets/images/op-ace.webp", productLink: "html/product-detail.html", desc: "Mô hình tưởng niệm Anh Trai Quốc Dân Portgas D. Ace with chiêu thức Hỏa Quyền thương hiệu. Ngọn lửa bao quanh cơ thể săn chắc cùng chiếc mũ cao bồi đặc trưng tạo nên một tư thế chiến đấu bất tử." },
     { id: "28", category: "onepiece", name: "Figure Tứ Hoàng Kaido Sinh Vật Mạnh Nhất", price: "1.850.000", image: "assets/images/op-kaido.webp", productLink: "html/product-detail.html", desc: "Mô hình vị Tứ Hoàng hung bạo Kaido Bách Thú với kích thước cực khủng. Cơ bắp cuồn cuộn, vết sẹo chữ X lớn trên ngực và cặp sừng rồng uy nghiêm được điêu khắc vô cùng hầm hố, đè bẹp mọi mô hình thông thường." },
     { id: "29", category: "onepiece", name: "Figure Anh Hùng Hải Quân Garp", price: "800.000", image: "assets/images/op-grap.webp", productLink: "html/product-detail.html", desc: "Phó Đô Đốc Huyền Thoại Monkey D. Garp với chiếc áo choàng Công Lý tung bay trong gió. Mô hình bắt trọn khoảnh khắc nắm đấm bọc Haki vũ trang huyền thoại chuẩn bị giáng xuống đầu kẻ thù." },
     { id: "30", category: "onepiece", name: "Figure God Usopp Thánh Gióng", price: "580.000", image: "assets/images/op-ussop.webp", productLink: "html/product-detail.html", desc: "Xạ thủ 'God' Usopp với chiếc súng cao su Kabuto khổng lồ và chiếc túi đựng đầy các loại hạt Pop Green. Tư thế lém lỉnh nhưng không kém phần ngầu lòi khi chuẩn bị thực hiện một cú bắn định đoạt trận đấu." }
@@ -49,25 +49,44 @@ function addProduct(id, name, price, image, hyperLink)
     productImage.appendChild(Image);
 
     const productInfo = document.createElement("div");
-    productInfo.setAttribute("class", "product-info text-center text-truncate");
+    productInfo.setAttribute("class", "product-info text-center text-truncate p-2");
+    
     const productName = document.createElement("p");
     const productNameText = document.createTextNode(name);
     productName.appendChild(productNameText);
   
     const productPrice = document.createElement("p");
-    
     const productPriceText = document.createTextNode(price + "đ");
     productPrice.appendChild(productPriceText);
+
+    const buttonGroup = document.createElement("div");
+    buttonGroup.setAttribute("class", "d-flex flex-nowrap justify-content-between align-items-center gap-1 mt-2 w-100");
 
     const productLink = document.createElement("a");
     const productLinkText = document.createTextNode("Xem chi tiết");
     productLink.appendChild(productLinkText);
     productLink.setAttribute("href", "product-detail.html?id=" + id);
-    productLink.setAttribute("class", "btn btn-outline-info btn-sm mt-auto");
+    productLink.setAttribute("class", "btn btn-outline-info btn-sm flex-grow-1 text-nowrap");
+    productLink.style.fontSize = "12px"; 
+
+    const btnAddCart = document.createElement("button");
+    btnAddCart.innerHTML = '<i class="fa-solid fa-cart-plus"></i>';
+    btnAddCart.setAttribute("class", "btn btn-success btn-sm flex-shrink-0 px-2");
+    btnAddCart.setAttribute("title", "Thêm vào giỏ hàng");
+    btnAddCart.onclick = function() {
+        let cart = JSON.parse(localStorage.getItem("mySimpleCart")) || [];
+        cart.push(name);
+        localStorage.setItem("mySimpleCart", JSON.stringify(cart));
+        renderCart(); 
+        alert("Đã thêm mô hình " + name + " vào giỏ hàng thành công!");
+    };
+
+    buttonGroup.appendChild(productLink);
+    buttonGroup.appendChild(btnAddCart);
 
     productInfo.appendChild(productName);
     productInfo.appendChild(productPrice);
-    productInfo.appendChild(productLink);
+    productInfo.appendChild(buttonGroup);
 
     productItem.appendChild(productImage);
     productItem.appendChild(productInfo);
@@ -92,7 +111,6 @@ function renderCart() {
     let cart = JSON.parse(localStorage.getItem("mySimpleCart")) || [];
     const quickList = document.getElementById("quick-cart-list");
     const emptyMsg = document.getElementById("cart-empty-msg");
-    
     const totalContainer = document.getElementById("cart-total-price");
 
     if (!quickList) return; 
@@ -109,7 +127,6 @@ function renderCart() {
     let totalSum = 0;
 
     cart.forEach(function(name, index) {
-
         const originalProduct = productList.find(p => p.name === name);
         let currentPriceStr = "0";
         
@@ -173,10 +190,7 @@ function checkout() {
     
     alert("Đơn hàng của bạn đã được ghi nhận! Cảm ơn bạn đã mua sắm tại Thế Giới Mô Hình.");
     
-    // Xóa sạch giỏ hàng sau khi mua
     localStorage.removeItem("mySimpleCart");
-    
-    // Cập nhật lại giao diện và đóng Modal
     renderCart();
     const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
     modal.hide();
